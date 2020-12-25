@@ -2,17 +2,38 @@ package com.revature.models;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ers_reimbursement")
 public class Reimbursement {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "reimb_Id")
 	private int reimbursementId;
+	@Column(name = "reimb_amount")
 	private double reimbursementAmount;
+	@Column(name = "reimb_submitted")
 	private Timestamp reimbursementSubmitted;
+	@Column(name = "reimb_resolved")
 	private Timestamp reimbursementResolved;
+	@Column(name = "reimb_description")
 	private String reimbursementDescription;
+	@Column(name = "reimb_receipt")
 	private byte[] reimbursementReceipt;
+	@Column(name = "reimb_author")
 	private int reimbursementAnthorId;
+	@Column(name = "reimb_resolver")
 	private int reimbursementResolverId;
+	@Column(name = "reimb_status_Id")
 	private int reimbursementStatusId;
+	@Column(name = "reimb_type_Id")
 	private int reimbursementTypeId;
 
 	public Reimbursement() {

@@ -18,6 +18,7 @@ public class FrontController extends HttpServlet {
 	private AuthController authController = new AuthController();
 	private ErrorController errorController = new ErrorController();
 	private UserController userController = new UserController();
+	private ReimbursementController reimbursementController = new ReimbursementController();
 
 	protected void directControlRouter(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
@@ -66,11 +67,38 @@ public class FrontController extends HttpServlet {
 				}
 				case "POST": {
 					// authController.userLogin(req, res);
+
 					break;
 				}
 				case "PUT": {
 					res.setStatus(400);
 					res.getWriter().write("Method Not Supported");
+					break;
+				}
+				default: {
+					break;
+				}
+				}
+				break;
+			}
+		}
+		case "/reimbursements": {
+			if (!id.equals("")) {
+				System.out.println("ID: " + id);
+				break;
+			} else {
+				switch (req.getMethod()) {
+				case "GET": {
+					userController.getAllUsers(req, res);
+					break;
+				}
+				case "POST": {
+					// authController.userLogin(req, res);
+					reimbursementController.addReimbursement(req, res);
+					break;
+				}
+				case "PUT": {
+					reimbursementController.updateReimbursement(req, res);
 					break;
 				}
 				default: {
@@ -98,6 +126,7 @@ public class FrontController extends HttpServlet {
 		try {
 			directControlRouter(request, response);
 		} catch (Throwable t) {
+			System.out.println(t.getMessage());
 			errorController.handle(request, response, t);
 		}
 	}
