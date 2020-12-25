@@ -26,7 +26,6 @@ public class UserController {
 		}
 
 		res.setStatus(200);
-//		res.getWriter().write(om.writeValueAsString(user));
-//		res.setHeader("Content-Type", "application/json");
+
 	}
 }
