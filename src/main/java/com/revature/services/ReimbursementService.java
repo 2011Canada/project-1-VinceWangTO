@@ -10,6 +10,8 @@ public interface ReimbursementService {
 
 	public List<Reimbursement> getReimbursementsByUserId(int userId);
 
+	public Reimbursement getReimbursement(int reimbursementId);
+
 	public boolean addReimbursement(Reimbursement reimbursement);
 
 	public boolean updateReimbursement(Reimbursement reimbursement);

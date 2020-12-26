@@ -85,15 +85,15 @@ public class FrontController extends HttpServlet {
 		case "/reimbursements": {
 			if (!id.equals("")) {
 				System.out.println("ID: " + id);
+				reimbursementController.getReimbursement(req, res, Integer.parseInt(id));
 				break;
 			} else {
 				switch (req.getMethod()) {
 				case "GET": {
-					userController.getAllUsers(req, res);
+					reimbursementController.getAllReimbursements(req, res);
 					break;
 				}
 				case "POST": {
-					// authController.userLogin(req, res);
 					reimbursementController.addReimbursement(req, res);
 					break;
 				}
@@ -108,9 +108,14 @@ public class FrontController extends HttpServlet {
 				break;
 			}
 		}
+		case "/myreimbursements": {
+			reimbursementController.getReimbursementsByUser(req, res, Integer.parseInt(id));
+			break;
+		}
 		default: {
 			break;
 		}
+
 		}
 	}
 

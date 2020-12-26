@@ -29,7 +29,7 @@ public class Reimbursement {
 	private byte[] reimbursementReceipt;
 	@Column(name = "reimb_author")
 	private int reimbursementAnthorId;
-	@Column(name = "reimb_resolver")
+	@Column(name = "reimb_resolver", nullable = true)
 	private int reimbursementResolverId;
 	@Column(name = "reimb_status_Id")
 	private int reimbursementStatusId;

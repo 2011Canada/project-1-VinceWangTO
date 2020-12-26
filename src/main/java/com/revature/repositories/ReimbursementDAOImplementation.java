@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
 import com.revature.models.Reimbursement;
 import com.revature.utils.ConnectionFactory;
@@ -16,19 +17,72 @@ public class ReimbursementDAOImplementation implements ReimbursementDAO {
 	@Override
 	public List<Reimbursement> getAllReimbursements() {
 		// TODO Auto-generated method stub
-		return null;
+		em = ConnectionFactory.getEntityManager();
+
+		String query = "SELECT r FROM Reimbursement r ";
+
+		TypedQuery<Reimbursement> tq = em.createQuery(query, Reimbursement.class);
+
+		List<Reimbursement> reimbursements;
+		try {
+			reimbursements = tq.getResultList();
+
+		} catch (NoResultException ex) {
+			ex.printStackTrace();
+			return null;
+
+		} finally {
+			em.close();
+		}
+		return reimbursements;
 	}
 
 	@Override
 	public List<Reimbursement> getReimbursementByUserId(int userId) {
 		// TODO Auto-generated method stub
-		return null;
+		em = ConnectionFactory.getEntityManager();
+
+		String query = "SELECT r FROM Reimbursement r WHERE r.reimbursementAnthorId = :id";
+
+		TypedQuery<Reimbursement> tq = em.createQuery(query, Reimbursement.class);
+		tq.setParameter("id", userId);
+
+		List<Reimbursement> reimbursements;
+		try {
+			reimbursements = tq.getResultList();
+
+		} catch (NoResultException ex) {
+			ex.printStackTrace();
+			return null;
+
+		} finally {
+			em.close();
+		}
+		return reimbursements;
 	}
 
 	@Override
 	public Reimbursement getReimbursementById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		em = ConnectionFactory.getEntityManager();
+
+		String query = "SELECT r FROM Reimbursement r WHERE r.reimbursementId = :id";
+
+		TypedQuery<Reimbursement> tq = em.createQuery(query, Reimbursement.class);
+		tq.setParameter("id", id);
+
+		Reimbursement reimbursement = null;
+		try {
+			reimbursement = tq.getSingleResult();
+
+		} catch (NoResultException ex) {
+			ex.printStackTrace();
+			return null;
+
+		} finally {
+			em.close();
+		}
+		return reimbursement;
 	}
 
 	@Override
