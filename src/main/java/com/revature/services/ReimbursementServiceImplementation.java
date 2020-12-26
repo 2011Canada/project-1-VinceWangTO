@@ -15,14 +15,18 @@ public class ReimbursementServiceImplementation implements ReimbursementService 
 
 	@Override
 	public List<Reimbursement> getReimbursements() {
-		// TODO Auto-generated method stub
-		return null;
+		return resd.getAllReimbursements();
+	}
+
+	@Override
+	public Reimbursement getReimbursement(int reimbursementId) {
+		return resd.getReimbursementById(reimbursementId);
 	}
 
 	@Override
 	public List<Reimbursement> getReimbursementsByUserId(int userId) {
 		// TODO Auto-generated method stub
-		return null;
+		return resd.getReimbursementByUserId(userId);
 	}
 
 	@Override

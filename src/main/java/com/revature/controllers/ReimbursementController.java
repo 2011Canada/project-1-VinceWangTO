@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.exceptions.UnauthenticatedException;
-import com.revature.exceptions.UnauthorizedException;
 import com.revature.models.Reimbursement;
 import com.revature.repositories.ReimbursementDAOImplementation;
 import com.revature.services.ReimbursementServiceImplementation;
@@ -21,18 +20,60 @@ public class ReimbursementController {
 	private ReimbursementServiceImplementation reimbursementService = new ReimbursementServiceImplementation(
 			new ReimbursementDAOImplementation());
 
-	public void getAllReimbursement(HttpServletRequest req, HttpServletResponse res)
+	public void getAllReimbursements(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 
 		HttpSession sess = req.getSession();
 
-		if (sess.getAttribute("User-Role") == null) {
-			throw new UnauthenticatedException();
-		} else if (!sess.getAttribute("User-Role").equals("Finace Manager")) {
-			throw new UnauthorizedException();
-		}
+//		if (sess.getAttribute("User-Role") == null) {
+//			throw new UnauthenticatedException();
+//		} else if (!sess.getAttribute("User-Role").equals("Finace Manager")) {
+//			throw new UnauthorizedException();
+//		}
+
+		List<Reimbursement> reimbursements = reimbursementService.getReimbursements();
 
 		res.setStatus(200);
+		res.getWriter().write(om.writeValueAsString(reimbursements));
+		res.setHeader("Content-Type", "application/json");
+
+	}
+
+	public void getReimbursementsByUser(HttpServletRequest req, HttpServletResponse res, int userId)
+			throws ServletException, IOException {
+
+		HttpSession sess = req.getSession();
+
+//		if (sess.getAttribute("User-Role") == null) {
+//			throw new UnauthenticatedException();
+//		} else if (!sess.getAttribute("User-Role").equals("Finace Manager")) {
+//			throw new UnauthorizedException();
+//		}
+
+		List<Reimbursement> reimbursements = reimbursementService.getReimbursementsByUserId(userId);
+
+		res.setStatus(200);
+		res.getWriter().write(om.writeValueAsString(reimbursements));
+		res.setHeader("Content-Type", "application/json");
+
+	}
+
+	public void getReimbursement(HttpServletRequest req, HttpServletResponse res, int reimbursementId)
+			throws ServletException, IOException {
+
+		HttpSession sess = req.getSession();
+
+//		if (sess.getAttribute("User-Role") == null) {
+//			throw new UnauthenticatedException();
+//		} else if (!sess.getAttribute("User-Role").equals("Finace Manager")) {
+//			throw new UnauthorizedException();
+//		}
+
+		Reimbursement reimbursement = reimbursementService.getReimbursement(reimbursementId);
+
+		res.setStatus(200);
+		res.getWriter().write(om.writeValueAsString(reimbursement));
+		res.setHeader("Content-Type", "application/json");
 
 	}
 
