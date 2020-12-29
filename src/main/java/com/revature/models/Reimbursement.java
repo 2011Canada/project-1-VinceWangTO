@@ -26,7 +26,7 @@ public class Reimbursement {
 	@Column(name = "reimb_description")
 	private String reimbursementDescription;
 	@Column(name = "reimb_receipt")
-	private byte[] reimbursementReceipt;
+	private String reimbursementReceipt;
 	@Column(name = "reimb_author")
 	private int reimbursementAnthorId;
 	@Column(name = "reimb_resolver", nullable = true)
@@ -41,7 +41,7 @@ public class Reimbursement {
 	}
 
 	public Reimbursement(int reimbursementId, double reimbursementAmount, Timestamp reimbursementSubmitted,
-			Timestamp reimbursementResolved, String reimbursementDescription, byte[] reimbursementReceipt,
+			Timestamp reimbursementResolved, String reimbursementDescription, String reimbursementReceipt,
 			int reimbursementAnthorId, int reimbursementResolverId, int reimbursementStatusId,
 			int reimbursementTypeId) {
 		this.reimbursementId = reimbursementId;
@@ -96,11 +96,11 @@ public class Reimbursement {
 		this.reimbursementDescription = reimbursementDescription;
 	}
 
-	public byte[] getReimbursementReceipt() {
+	public String getReimbursementReceipt() {
 		return reimbursementReceipt;
 	}
 
-	public void setReimbursementReceipt(byte[] reimbursementReceipt) {
+	public void setReimbursementReceipt(String reimbursementReceipt) {
 		this.reimbursementReceipt = reimbursementReceipt;
 	}
 
