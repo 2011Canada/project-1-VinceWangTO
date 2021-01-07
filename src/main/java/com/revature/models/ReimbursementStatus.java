@@ -1,9 +1,16 @@
 package com.revature.models;
 
+import java.util.List;
+
+import javax.persistence.OneToMany;
+
 public class ReimbursementStatus {
 
 	private int reimbursementStatusId;
 	private String reimbursementStatus;
+
+	@OneToMany(mappedBy = "status")
+	private List<Reimbursement> reimbursements;
 
 	public ReimbursementStatus() {
 

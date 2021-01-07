@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.exceptions.UnauthenticatedException;
+import com.revature.exceptions.UnauthorizedException;
 import com.revature.models.Reimbursement;
 import com.revature.repositories.ReimbursementDAOImplementation;
 import com.revature.services.ReimbursementServiceImplementation;
@@ -25,11 +27,11 @@ public class ReimbursementController {
 
 		HttpSession sess = req.getSession();
 
-//		if (sess.getAttribute("User-Role") == null) {
-//			throw new UnauthenticatedException();
-//		} else if (!sess.getAttribute("User-Role").equals("Finace Manager")) {
-//			throw new UnauthorizedException();
-//		}
+		if (sess.getAttribute("User-Role") == null) {
+			throw new UnauthenticatedException();
+		} else if (!sess.getAttribute("User-Role").equals("Finace Manager")) {
+			throw new UnauthorizedException();
+		}
 
 		List<Reimbursement> reimbursements = reimbursementService.getReimbursements();
 
@@ -44,11 +46,11 @@ public class ReimbursementController {
 
 		HttpSession sess = req.getSession();
 
-//		if (sess.getAttribute("User-Role") == null) {
-//			throw new UnauthenticatedException();
-//		} else if (!sess.getAttribute("User-Role").equals("Finace Manager")) {
-//			throw new UnauthorizedException();
-//		}
+		if (sess.getAttribute("User-Role") == null) {
+			throw new UnauthenticatedException();
+		} else if (!sess.getAttribute("User-Role").equals("Finace Manager")) {
+			throw new UnauthorizedException();
+		}
 
 		List<Reimbursement> reimbursements = reimbursementService.getReimbursementsByUserId(userId);
 
@@ -63,11 +65,11 @@ public class ReimbursementController {
 
 		HttpSession sess = req.getSession();
 
-//		if (sess.getAttribute("User-Role") == null) {
-//			throw new UnauthenticatedException();
-//		} else if (!sess.getAttribute("User-Role").equals("Finace Manager")) {
-//			throw new UnauthorizedException();
-//		}
+		if (sess.getAttribute("User-Role") == null) {
+			throw new UnauthenticatedException();
+		} else if (!sess.getAttribute("User-Role").equals("Finace Manager")) {
+			throw new UnauthorizedException();
+		}
 
 		Reimbursement reimbursement = reimbursementService.getReimbursement(reimbursementId);
 
@@ -81,9 +83,9 @@ public class ReimbursementController {
 
 		HttpSession sess = req.getSession();
 
-//		if (sess.getAttribute("User-Role") == null) {
-//			throw new UnauthenticatedException();
-//		}
+		if (sess.getAttribute("User-Role") == null) {
+			throw new UnauthenticatedException();
+		}
 
 		Reimbursement reimbursement = om.readValue(req.getInputStream(), Reimbursement.class);
 
@@ -105,9 +107,9 @@ public class ReimbursementController {
 
 		HttpSession sess = req.getSession();
 
-//		if (sess.getAttribute("User-Role") == null) {
-//			throw new UnauthenticatedException();
-//		}
+		if (sess.getAttribute("User-Role") == null) {
+			throw new UnauthenticatedException();
+		}
 
 		Reimbursement reimbursement = om.readValue(req.getInputStream(), Reimbursement.class);
 
