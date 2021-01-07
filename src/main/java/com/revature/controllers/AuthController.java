@@ -25,8 +25,6 @@ public class AuthController {
 
 		Credentials cred = om.readValue(req.getInputStream(), Credentials.class);
 
-		// User user = new User(2, "username", "PW", "Heng", "Wang",
-		// "heng.wang@revature.net", 2);
 		User user = userService.login(cred.getUsername(), cred.getPassword());
 
 		if (user != null) {

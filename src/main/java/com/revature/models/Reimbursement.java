@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -36,14 +38,27 @@ public class Reimbursement {
 	@Column(name = "reimb_type_Id")
 	private int reimbursementTypeId;
 
+	@ManyToOne
+	@JoinColumn(referencedColumnName = "reimb_status_Id")
+	private ReimbursementStatus status;
+
 	public Reimbursement() {
 
 	}
 
+	public ReimbursementStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(ReimbursementStatus status) {
+		this.status = status;
+	}
+
 	public Reimbursement(int reimbursementId, double reimbursementAmount, Timestamp reimbursementSubmitted,
 			Timestamp reimbursementResolved, String reimbursementDescription, String reimbursementReceipt,
-			int reimbursementAnthorId, int reimbursementResolverId, int reimbursementStatusId,
-			int reimbursementTypeId) {
+			int reimbursementAnthorId, int reimbursementResolverId, int reimbursementStatusId, int reimbursementTypeId,
+			ReimbursementStatus status) {
+		super();
 		this.reimbursementId = reimbursementId;
 		this.reimbursementAmount = reimbursementAmount;
 		this.reimbursementSubmitted = reimbursementSubmitted;
@@ -54,6 +69,7 @@ public class Reimbursement {
 		this.reimbursementResolverId = reimbursementResolverId;
 		this.reimbursementStatusId = reimbursementStatusId;
 		this.reimbursementTypeId = reimbursementTypeId;
+		this.status = status;
 	}
 
 	public int getReimbursementId() {
