@@ -6,31 +6,26 @@ The Expense Reimbursement System (ERS) will manage the process of reimbursing em
 
 
 ## Technologies Used
-
-	- Backend used Java, Hibernate, and OracleSQL database.
-	- Frondend used React, Redux and Ant Design Framework.
+* Backend used Java, Hibernate, and OracleSQL database.
+* Frondend used React, Redux and Ant Design Framework.
 	
 
 ## Features
-
-	- Password hashed with salt
-	- User can upload receipt photos. SO the managers can view these images.
+* Password hashed with salt
+* User can upload receipt photos. SO the managers can view these images.
 
 #### To-Do-List:
-
-	- Add register feature
-	- Deploy the project to AWS
+- Add register feature
+- Deploy the project to AWS
 	
 ## Getting Start
-
-	- Clone the project
-	- Update Maven to download dependencies at backend
-	- Run npm install to download dependencies at frontend
+* Clone the project
+* Update Maven to download dependencies at backend
+* Run npm install to download dependencies at frontend
 	
 ## Usage
-
-	- User can login to create, view reimbursements
-	- Manager can login to approve/reject reimbursements
+* User can login to create, view reimbursements
+* Manager can login to approve/reject reimbursements
 	
 ## License
 This project uses the following license: MIT.
