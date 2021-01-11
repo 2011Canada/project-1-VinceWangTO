@@ -19,13 +19,16 @@ The Expense Reimbursement System (ERS) will manage the process of reimbursing em
 - Deploy the project to AWS
 	
 ## Getting Start
-* Clone the project
+* Clone the project : git clone https://github.com/2011Canada/project-1-VinceWangTO.git
 * Update Maven to download dependencies at backend
-* Run npm install to download dependencies at frontend
+* Run commands at frontend
+	* npm install
+	* npm start
 	
 ## Usage
 * User can login to create, view reimbursements
 * Manager can login to approve/reject reimbursements
-	
+## Contributors
+* Heng Wang
 ## License
 This project uses the following license: MIT.
